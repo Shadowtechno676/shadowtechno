@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=1920,height=1080">
+
+<title>Shadowtechno - </title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+
+    width: 1920px;
+    height: 1080px;
+
+    overflow: hidden;
+
+    background: #030008;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================
+   FOND
+========================= */
+
+.background {
+
+    position: absolute;
+
+    width: 1920px;
+    height: 1080px;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(124,58,237,.35),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(168,85,247,.18),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(109,40,217,.18),
+            transparent 30%
+        ),
+
+        #030008;
+}
+
+
+/* =========================
+   GROS CERCLE LUMINEUX
+========================= */
+
+.orb {
+
+    position: absolute;
+
+    width: 800px;
+    height: 800px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139,92,246,.18),
+            transparent 65%
+        );
+
+    filter: blur(10px);
+
+    animation:
+        orb 8s ease-in-out infinite;
+}
+
+
+/* =========================
+   GRILLE
+========================= */
+
+.grid {
+
+    position: absolute;
+
+    width: 2500px;
+    height: 1500px;
+
+    left: -290px;
+    top: 650px;
+
+    background-image:
+
+        linear-gradient(
+            rgba(139,92,246,.09) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(139,92,246,.09) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        70px 70px;
+
+    transform:
+        perspective(600px)
+        rotateX(65deg);
+
+    animation:
+        grid 8s linear infinite;
+}
+
+
+/* =========================
+   PARTICULES
+========================= */
+
+.particle {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #c4b5fd;
+
+    box-shadow:
+        0 0 10px #8b5cf6,
+        0 0 25px #7c3aed;
+
+    animation:
+        particle 5s linear infinite;
+}
+
+
+/* =========================
+   CONTENU
+========================= */
+
+.content {
+
+    position: absolute;
+
+    width: 100%;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+/* =========================
+   PETIT TEXTE
+========================= */
+
+.small {
+
+    font-size: 24px;
+
+    letter-spacing: 9px;
+
+    color: #a78bfa;
+
+    margin-bottom: 25px;
+
+    text-transform: uppercase;
+
+    animation:
+        fade 3s ease-in-out infinite alternate;
+}
+
+
+/* =========================
+   DÉBUT DE LIVE
+========================= */
+
+.starting {
+
+    font-size: 125px;
+
+    font-weight: 900;
+
+    letter-spacing: 10px;
+
+    color: white;
+
+    text-transform: uppercase;
+
+    text-shadow:
+
+        0 0 10px white,
+
+        0 0 25px #c084fc,
+
+        0 0 50px #a855f7,
+
+        0 0 100px #7c3aed,
+
+        0 0 160px #6d28d9;
+
+    animation:
+        title 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   
+========================= */
+
+.brand {
+
+    margin-top: 20px;
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    letter-spacing: 17px;
+
+    color: #ddd6fe;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 15px #8b5cf6,
+        0 0 40px #7c3aed;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+
+    margin-top: 55px;
+
+    font-size: 24px;
+
+    color: #d8d0e8;
+
+    letter-spacing: 3px;
+
+    animation:
+        message 8s infinite;
+}
+
+
+/* =========================
+   COMPTEUR
+========================= */
+
+.countdown {
+
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+}
+
+
+.box {
+
+    width: 110px;
+    height: 100px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border:
+
+        1px solid
+        rgba(167,139,250,.35);
+
+    border-radius: 15px;
+
+    background:
+
+        rgba(20,10,35,.65);
+
+    box-shadow:
+
+        0 0 30px
+        rgba(124,58,237,.15),
+
+        inset 0 0 30px
+        rgba(124,58,237,.08);
+}
+
+
+.number {
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    color: white;
+}
+
+
+.label {
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    color: #a78bfa;
+}
+
+
+/* =========================
+   BARRE
+========================= */
+
+.bottom {
+
+    position: absolute;
+
+    bottom: 70px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 600px;
+
+    text-align: center;
+
+    z-index: 20;
+}
+
+
+.line {
+
+    width: 100%;
+
+    height: 3px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #8b5cf6,
+            #c084fc,
+            #8b5cf6,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px #8b5cf6;
+
+    animation:
+        line 3s ease-in-out infinite;
+}
+
+
+.bottomText {
+
+    margin-top: 18px;
+
+    font-size: 15px;
+
+    letter-spacing: 5px;
+
+    color: #8f86a5;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes orb {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%,-50%)
+            scale(.8);
+
+        opacity: .5;
+    }
+
+    50% {
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.15);
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes grid {
+
+    from {
+
+        transform:
+            perspective(600px)
+            rotateX(65deg)
+            translateY(0);
+    }
+
+    to {
+
+        transform:
+            perspective(600px)
+            rotateX(65deg)
+            translateY(140px);
+    }
+}
+
+
+@keyframes particle {
+
+    from {
+
+        transform:
+            translateY(1100px);
+
+        opacity: 0;
+    }
+
+    15% {
+
+        opacity: 1;
+    }
+
+    85% {
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translateY(-1000px);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes title {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.025);
+    }
+}
+
+
+@keyframes fade {
+
+    from {
+
+        opacity: .5;
+    }
+
+    to {
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes message {
+
+    0% {
+
+        opacity: .5;
+    }
+
+    50% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: .5;
+    }
+}
+
+
+@keyframes line {
+
+    0%,
+    100% {
+
+        opacity: .5;
+    }
+
+    50% {
+
+        opacity: 1;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="background">
+
+    <div class="orb"></div>
+
+    <div class="grid"></div>
+
+
+    <!-- PARTICULES -->
+
+    <div class="particle"
+         style="left:5%;animation-delay:0s"></div>
+
+    <div class="particle"
+         style="left:12%;animation-delay:1s"></div>
+
+    <div class="particle"
+         style="left:20%;animation-delay:2s"></div>
+
+    <div class="particle"
+         style="left:28%;animation-delay:.5s"></div>
+
+    <div class="particle"
+         style="left:38%;animation-delay:3s"></div>
+
+    <div class="particle"
+         style="left:48%;animation-delay:1.5s"></div>
+
+    <div class="particle"
+         style="left:58%;animation-delay:2.5s"></div>
+
+    <div class="particle"
+         style="left:68%;animation-delay:1s"></div>
+
+    <div class="particle"
+         style="left:78%;animation-delay:3.5s"></div>
+
+    <div class="particle"
+         style="left:88%;animation-delay:2s"></div>
+
+    <div class="particle"
+         style="left:95%;animation-delay:.7s"></div>
+
+
+    <!-- CONTENU -->
+
+    <div class="content">
+
+        <div class="small">
+            BIENVENUE SUR LE LIVE
+        </div>
+
+
+        <div class="starting">
+            STARTING SOON
+        </div>
+
+
+        <div class="brand">
+            
+        </div>
+
+
+        <div class="message">
+            
+        </div>
+
+
+        <div class="countdown">
+
+            <div class="box">
+
+                <div
+                    class="number"
+                    id="minutes">
+                    05
+                </div>
+
+                <div class="label">
+                    MIN
+                </div>
+
+            </div>
+
+
+            <div class="box">
+
+                <div
+                    class="number"
+                    id="seconds">
+                    00
+                </div>
+
+                <div class="label">
+                    SEC
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BAS -->
+
+    <div class="bottom">
+
+        <div class="line"></div>
+
+        <div class="bottomText">
+            PRÉPARE-TOI • LE LIVE ARRIVE
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   COMPTE À REBOURS
+========================= */
+
+let totalSeconds = 5 * 60;
+
+
+function updateTimer() {
+
+    let minutes =
+        Math.floor(totalSeconds / 60);
+
+    let seconds =
+        totalSeconds % 60;
+
+
+    document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2, "0");
+
+
+    document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2, "0");
+
+
+    if (totalSeconds > 0) {
+
+        totalSeconds--;
+
+    } else {
+
+        totalSeconds = 5 * 60;
+
+    }
+
+}
+
+
+updateTimer();
+
+setInterval(
+    updateTimer,
+    1000
+);
+
+</script>
+
+
+</body>
+</html>
