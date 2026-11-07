@@ -1,0 +1,50 @@
+name: Build Shadowtechno Windows installer
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Extract application source
+        shell: pwsh
+        run: |
+          $archive = Get-ChildItem -Path . -Filter "*2.2.1*Source*.zip" -Recurse | Select-Object -First 1
+          if (-not $archive) { throw "Source archive 2.2.1 not found." }
+          Expand-Archive -LiteralPath $archive.FullName -DestinationPath "$env:GITHUB_WORKSPACE\app" -Force
+          $package = Get-ChildItem -Path "$env:GITHUB_WORKSPACE\app" -Filter "package.json" -Recurse | Select-Object -First 1
+          if (-not $package) { throw "package.json not found in source archive." }
+          "APP_DIR=$($package.Directory.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Install app dependencies
+        working-directory: ${{ env.APP_DIR }}
+        run: npm install
+
+      - name: Build Windows installer
+        working-directory: ${{ env.APP_DIR }}
+        run: npx electron-builder --win nsis
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shadowtechno-Windows-Installer
+          path: |
+            ${{ env.APP_DIR }}/release/*.exe
+          if-no-files-found: error
+          retention-days: 30
